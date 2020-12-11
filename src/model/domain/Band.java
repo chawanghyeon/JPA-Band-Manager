@@ -25,16 +25,19 @@ import lombok.ToString;
 @Builder
 
 @Entity
-@SequenceGenerator(name = "BAND_SEQ_GEN", sequenceName = "band_id_seq", initialValue = 1)
+@SequenceGenerator(name = "BAND_SEQ_GEN", sequenceName = "band_id_seq", initialValue = 1, allocationSize = 1)
 public class Band {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BAND_SEQ_GEN")
 	@Column(name = "band_id")
 	private long bandId;
+	
 	@Column(nullable = false, length = 20)
 	private String bname;
+	
 	@Column(nullable = false, length = 20)
 	private String genre;
+	
 	@Column(nullable = false, length = 20)
 	private int guarantee;
 

@@ -24,26 +24,26 @@ import lombok.ToString;
 @Builder
 
 @Entity
-@SequenceGenerator(name = "MEMBER_SEQ_GEN", sequenceName = "MEMBER_SEQ", initialValue = 1, allocationSize = 50)
+@SequenceGenerator(name = "MEMBER_SEQ_GEN", sequenceName = "MEMBER_SEQ", initialValue = 1, allocationSize = 1)
 public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GEN")
 	private Long memberId;
 
-	@Column(nullable=false, length=20)
+	@Column(nullable=false, length=50)
 	private String name;
 
-	@Column(nullable=false, length=20)
+	@Column(nullable=false, length=30)
 	private String role;
 
-	@Column(nullable=false, length=20)
+	@Column(nullable=false, length=30)
 	private String nationality;
 
-	@Column(nullable=false, length=10)
+	@Column(nullable=false, length=30)
 	private String gender;
 
 	@ManyToOne
-	@JoinColumn(name="")
+	@JoinColumn(name="bandId")
 	private Band bandId;
 }
