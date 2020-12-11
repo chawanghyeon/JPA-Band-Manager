@@ -2,11 +2,13 @@ package model.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -14,13 +16,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+//@ToString
 @Builder
 
 @Entity
@@ -43,7 +44,17 @@ public class Member {
 	@Column(nullable=false, length=30)
 	private String gender;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="bandId")
 	private Band bandId;
+
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", name=" + name + ", role=" + role + ", nationality=" + nationality
+				+ ", gender=" + gender + ", bandId=" + bandId.getBandId() + ", bname = " + bandId.getBname() + "]";
+	}
+	
+	
+	
+	
 }
